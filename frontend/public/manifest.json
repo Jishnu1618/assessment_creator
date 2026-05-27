@@ -1,0 +1,74 @@
+[
+  {
+    "original": "832d9b0b041a84344e73e92d8cb6cae12db5a7b7",
+    "exported": "avatar-monkey-small.jpg",
+    "format": "JPEG",
+    "width": 500,
+    "height": 500,
+    "mode": "RGB",
+    "bytes": 111668
+  },
+  {
+    "original": "11a3dba74bb954d4e5fc9c457efbea1f52c4f604",
+    "exported": "delhi-public-school-logo-wide.png",
+    "format": "PNG",
+    "width": 2208,
+    "height": 495,
+    "mode": "RGBA",
+    "bytes": 119803
+  },
+  {
+    "original": "59f1a4ed57b72d0788645df6c8c47e0ba697e58a",
+    "exported": "orange-gradient-small.jpg",
+    "format": "JPEG",
+    "width": 480,
+    "height": 270,
+    "mode": "RGB",
+    "bytes": 68121
+  },
+  {
+    "original": "9febd571fee6fd21c3fcb70add17604731bfebaf",
+    "exported": "orange-gradient-large.jpg",
+    "format": "JPEG",
+    "width": 3840,
+    "height": 2160,
+    "mode": "RGB",
+    "bytes": 231079
+  },
+  {
+    "original": "f18cc6fb195718db65e0638b17db02701a86f7ff",
+    "exported": "delhi-public-school-logo-compact.png",
+    "format": "PNG",
+    "width": 276,
+    "height": 62,
+    "mode": "RGBA",
+    "bytes": 11628
+  },
+  {
+    "original": "330354a493a7c5f251aba30907f2ec2914e44d2d",
+    "exported": "headshot-512.jpg",
+    "format": "JPEG",
+    "width": 512,
+    "height": 512,
+    "mode": "RGB",
+    "bytes": 128392
+  },
+  {
+    "original": "ee8e04a2aab79d37e6b53c7ff948d9fc67c7f73b",
+    "exported": "headshot-1024.jpg",
+    "format": "JPEG",
+    "width": 1024,
+    "height": 1024,
+    "mode": "RGB",
+    "bytes": 68416
+  },
+  {
+    "original": "2e5a797574651e700037a00834fc192cdff92aad",
+    "exported": "avatar-monkey-large.jpg",
+    "format": "JPEG",
+    "width": 2000,
+    "height": 2000,
+    "mode": "RGB",
+    "bytes": 515452
+  }
+]

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;750&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Colors - Light mode defaults */
+  --color-primary:      #303030;
+  --color-black:        #000000;
+  --color-white:        #FFFFFF;
+  --color-muted:        #5E5E5E;
+  --color-placeholder:  #A9A9A9;
+  --color-danger:       #C53535;
+  --color-surface:      #F0F0F0;
+  --background:         #FFFFFF;
+  
+  /* Fonts */
+  --font-display:       'Bricolage Grotesque', sans-serif;
+  --font-body:          'Inter', sans-serif;
+  --font-alt:           'Manrope', sans-serif;
+}
+
+/* Dark mode overrides */
+html.dark {
+  --color-primary:      #EFEFEF;
+  --color-muted:        #A0A0A0;
+  --color-surface:      #2A2A2A;
+  --background:         #1A1A1A;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #1A1A1A;
+}
+
+@theme {
+  --color-primary:      var(--color-primary);
+  --color-black:        var(--color-black);
+  --color-white:        var(--color-white);
+  --color-muted:        var(--color-muted);
+  --color-placeholder:  var(--color-placeholder);
+  --color-danger:       var(--color-danger);
+  --color-surface:      var(--color-surface);
+  --color-background:   var(--background);
+  
+  --font-sans:          var(--font-body);
+  --font-display:       var(--font-display);
+  --font-alt:           var(--font-alt);
+  
+  --shadow-card:        0 32px 48px rgba(0,0,0,0.20), 0 16px 48px rgba(0,0,0,0.12);
+  --shadow-sm:          0 12px 26px rgba(0,0,0,0.10), 0 9px 17px rgba(0,0,0,0.15);
+  --shadow-dropdown:    0 32px 48px rgba(0,0,0,0.05), 0 16px 48px rgba(0,0,0,0.20);
+  --shadow-premium:     0 32px 48px rgba(0,0,0,0.20), 0 16px 48px rgba(0,0,0,0.12);
+}
+
+body {
+  /* Main canvas uses light gray like Figma - sidebar/cards use white */
+  background-color: #F5F5F5;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-placeholder);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Print styles: white background for printing */
+@media print {
+  body {
+    background-color: #FFFFFF;
+  }
+}
