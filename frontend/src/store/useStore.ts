@@ -138,6 +138,15 @@ const initialQuestionTypes: QuestionTypeRow[] = [
   { id: '4', type: 'Numerical Problems', count: 5, marks: 5 },
 ];
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+const getWSUrl = (assignmentId: string) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+  const wsProto = baseUrl.startsWith('https') ? 'wss' : 'ws';
+  const cleanedHost = baseUrl.replace(/^https?:\/\//, '');
+  return `${wsProto}://${cleanedHost}?assignmentId=${assignmentId}`;
+};
+
 const getTomorrowDateStringStore = () => {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -488,7 +497,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   fetchAssignments: async () => {
     set({ loading: true });
     try {
-      const response = await fetch('http://localhost:5000/api/assignments');
+      const response = await fetch(`${API_BASE_URL}/api/assignments`);
       if (response.ok) {
         const data = await response.json();
         // Map backend _id to frontend id
@@ -512,7 +521,7 @@ export const useStore = create<VedaStore>((set, get) => ({
     }));
 
     try {
-      await fetch(`http://localhost:5000/api/assignments/${id}`, {
+      await fetch(`${API_BASE_URL}/api/assignments/${id}`, {
         method: 'DELETE',
       });
     } catch (error) {
@@ -531,7 +540,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   fetchGroups: async () => {
     set({ groupsLoading: true });
     try {
-      const response = await fetch('http://localhost:5000/api/groups');
+      const response = await fetch(`${API_BASE_URL}/api/groups`);
       if (response.ok) {
         const data = await response.json();
         set({ groups: data.map((g: any) => ({ ...g, id: g._id })) });
@@ -544,7 +553,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   },
   addGroup: async (group) => {
     try {
-      const response = await fetch('http://localhost:5000/api/groups', {
+      const response = await fetch(`${API_BASE_URL}/api/groups`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(group)
@@ -560,7 +569,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   deleteGroup: async (id) => {
     set((state) => ({ groups: state.groups.filter(g => g.id !== id && g._id !== id) }));
     try {
-      await fetch(`http://localhost:5000/api/groups/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/groups/${id}`, { method: 'DELETE' });
     } catch (error) {
       console.error('Failed to delete group', error);
     }
@@ -572,7 +581,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   fetchLibraryItems: async () => {
     set({ libraryLoading: true });
     try {
-      const response = await fetch('http://localhost:5000/api/library');
+      const response = await fetch(`${API_BASE_URL}/api/library`);
       if (response.ok) {
         const data = await response.json();
         set({ libraryItems: data.map((i: any) => ({ ...i, id: i._id })) });
@@ -585,7 +594,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   },
   addLibraryItem: async (item) => {
     try {
-      const response = await fetch('http://localhost:5000/api/library', {
+      const response = await fetch(`${API_BASE_URL}/api/library`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item)
@@ -601,7 +610,7 @@ export const useStore = create<VedaStore>((set, get) => ({
   deleteLibraryItem: async (id) => {
     set((state) => ({ libraryItems: state.libraryItems.filter(i => i.id !== id && i._id !== id) }));
     try {
-      await fetch(`http://localhost:5000/api/library/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/api/library/${id}`, { method: 'DELETE' });
     } catch (error) {
       console.error('Failed to delete library item', error);
     }
@@ -730,7 +739,7 @@ export const useStore = create<VedaStore>((set, get) => ({
         uploadedFileSize: state.uploadedFileSize || null,
       };
 
-      const response = await fetch('http://localhost:5000/api/assignments', {
+      const response = await fetch(`${API_BASE_URL}/api/assignments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -757,7 +766,7 @@ export const useStore = create<VedaStore>((set, get) => ({
       }
 
       // Connect WebSocket for live generation progress streaming
-      const wsUrl = `ws://localhost:5000?assignmentId=${assignmentId}`;
+      const wsUrl = getWSUrl(assignmentId);
       console.log(`Connecting to WebSocket at ${wsUrl}...`);
       wsConnection = new WebSocket(wsUrl);
 

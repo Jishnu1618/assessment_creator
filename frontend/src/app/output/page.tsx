@@ -33,7 +33,8 @@ export default function OutputView() {
 
   const handleDownloadPDF = () => {
     if (assignmentId) {
-      const downloadUrl = `http://localhost:5000/api/assignments/${assignmentId}/pdf`;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const downloadUrl = `${baseUrl}/api/assignments/${assignmentId}/pdf`;
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.setAttribute('download', `Assignment-${assignmentId}.pdf`);
