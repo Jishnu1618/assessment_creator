@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore, type Theme } from '@/store/useAuthStore';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -357,8 +357,8 @@ function SchoolTab() {
   );
 }
 
-// ─── Main Settings Page ───────────────────────────────────────────────────────
-export default function SettingsPage() {
+// ─── Main Settings Page Content ───────────────────────────────────────────────
+function SettingsPageContent() {
   const searchParams = useSearchParams();
   const initialTab = (searchParams.get('tab') as SettingsTab) ?? 'appearance';
   const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab);
@@ -418,5 +418,17 @@ export default function SettingsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-4xl mx-auto p-8 text-center text-muted dark:text-[#A0A0A0] font-display">
+        Loading settings...
+      </div>
+    }>
+      <SettingsPageContent />
+    </Suspense>
   );
 }
