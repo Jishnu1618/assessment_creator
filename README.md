@@ -138,6 +138,23 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser!
 
 ---
 
+## 🌐 Production Cloud Deployment
+
+VedaAI is fully optimized for containerless cloud deployment using state-of-the-art serverless and cloud hosting engines:
+* **Frontend Hosting**: Serverless static deployment on **Vercel** with full Next.js dynamic routing capabilities.
+* **Backend API Engine**: Continuous Express.js REST & WebSockets execution on **Render** (Web Services tier).
+* **High-Availability Task Queue**: Serverless, secure TLS BullMQ caching on **Upstash Redis**.
+* **Database Cluster**: Fully managed, high-performance NoSQL collections on **MongoDB Atlas**.
+
+For detailed, step-by-step cloud setup, environment variable configurations, SSL/TLS parameter binding, and troubleshooting guidelines, please refer to the dedicated:
+👉 **[Cloud Deployment Guide (DEPLOYMENT.md)](./DEPLOYMENT.md)**
+
+> [!CAUTION]
+> **Security Reminder**: Never commit absolute secrets, connection credentials, or Gemini API keys to the repository. Always inject them securely using the Vercel and Render dashboard environment variables panels as documented in the deployment guide.
+
+---
+
 ## 🤝 Contributing & Reviewers
 
 Created with 🤍 as a full-stack assessment project. Designed to showcase modern web architecture, clean code standards, dynamic UI states, and robust LLM orchestration.
+
