@@ -1,10 +1,10 @@
-import express from 'express';
-import LibraryItem from '../models/LibraryItem';
+import express, { Request, Response } from 'express';
+import LibraryItem from '../models/LibraryItem.js';
 
 const router = express.Router();
 
 // GET all library items
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const items = await LibraryItem.find().sort({ createdAt: -1 });
     res.json(items);
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // POST a new library item
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
     const { title, type, subject, size } = req.body;
     const newItem = new LibraryItem({ title, type, subject, size });
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE a library item
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req: Request, res: Response) => {
   try {
     await LibraryItem.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: 'Library item deleted successfully' });

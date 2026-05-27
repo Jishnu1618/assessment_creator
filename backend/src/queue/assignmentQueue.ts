@@ -3,7 +3,6 @@ import { redisConnection } from '../config/redis.js';
 import Assignment from '../models/Assignment.js';
 import { generateAssignmentPaper } from '../services/gemini.js';
 import { wsManager } from '../services/wsManager.js';
-import IORedis from 'ioredis';
 
 const QUEUE_NAME = 'assignmentQueue';
 
@@ -65,14 +64,12 @@ export const startAssignmentWorker = () => {
 
         // 6. Cache result in Redis (key: result:{assignmentId}, TTL: 1 hour)
         try {
-          const redis = new IORedis(redisConnection as any);
-          await redis.set(
+          await redisConnection.set(
             `result:${assignmentId}`,
             JSON.stringify(updatedAssignment),
             'EX',
             3600 // 1 hour TTL
           );
-          redis.disconnect();
           console.log(`Cached result for assignment ${assignmentId} in Redis.`);
         } catch (cacheError) {
           console.warn(`Failed to cache result in Redis for ${assignmentId}:`, cacheError);

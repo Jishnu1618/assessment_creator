@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import http from 'http';
 import { WebSocketServer, WebSocket } from 'ws';
 import cors from 'cors';
@@ -35,7 +35,7 @@ app.use('/api/groups', groupsRouter);
 app.use('/api/library', libraryRouter);
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'healthy', timestamp: new Date() });
 });
 
@@ -71,7 +71,7 @@ wss.on('connection', (ws: WebSocket, req: http.IncomingMessage) => {
 
 // Handle upgrade from HTTP server to WebSocket
 server.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, (ws) => {
+  wss.handleUpgrade(request, socket, head, (ws: WebSocket) => {
     wss.emit('connection', ws, request);
   });
 });
