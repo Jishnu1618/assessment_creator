@@ -8,6 +8,8 @@ const redisConfig = {
   port: parseInt(process.env.REDIS_PORT || '6379', 10),
   password: process.env.REDIS_PASSWORD || undefined,
   maxRetriesPerRequest: null, // Critical requirement for BullMQ
+  // Automatically enable TLS for secure remote Redis services (like Upstash)
+  tls: process.env.REDIS_HOST && process.env.REDIS_HOST !== '127.0.0.1' ? {} : undefined,
 };
 
 export const redisConnection = new Redis(redisConfig);
