@@ -87,18 +87,15 @@ router.post('/', async (req: Request, res: Response) => {
     // Process asynchronously without BullMQ
     const processAssignment = async (assignmentId: string, data: any) => {
       try {
-        await Assignment.findByIdAndUpdate(assignmentId, { status: 'generating', progress: 20 });
-        wsManager.sendProgress(assignmentId, 20, 'generating');
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        await Assignment.findByIdAndUpdate(assignmentId, { progress: 40 });
-        wsManager.sendProgress(assignmentId, 40, 'generating');
+        console.log(`[Agent Orchestrator] Starting multi-agent pipeline for assignment ${assignmentId}...`);
         
-        console.log(`Calling Gemini API for assignment ${assignmentId}...`);
-        const generatedPaper = await generateAssignmentPaper(data);
-        
-        await Assignment.findByIdAndUpdate(assignmentId, { progress: 80 });
-        wsManager.sendProgress(assignmentId, 80, 'generating');
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const generatedPaper = await generateAssignmentPaper({
+          ...data,
+          onProgress: async (status, percentage) => {
+            await Assignment.findByIdAndUpdate(assignmentId, { progress: percentage });
+            wsManager.sendProgress(assignmentId, percentage, 'generating', status);
+          }
+        });
         
         const updatedAssignment = await Assignment.findByIdAndUpdate(
           assignmentId,
@@ -110,7 +107,7 @@ router.post('/', async (req: Request, res: Response) => {
       } catch (error: any) {
         console.error(`Failed to generate paper for assignment ${assignmentId}:`, error);
         await Assignment.findByIdAndUpdate(assignmentId, { status: 'failed', progress: 100 });
-        wsManager.sendProgress(assignmentId, 100, 'failed');
+        wsManager.sendProgress(assignmentId, 100, 'failed', 'Generation failed');
       }
     };
 

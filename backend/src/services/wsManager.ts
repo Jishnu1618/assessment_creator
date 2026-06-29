@@ -14,10 +14,10 @@ class WebSocketManager {
   }
 
   /** Emit an intermediate progress update to the subscribed client */
-  public sendProgress(assignmentId: string, progress: number, status: string, data?: any) {
+  public sendProgress(assignmentId: string, progress: number, status: string, message?: string, data?: any) {
     const ws = this.clients.get(assignmentId);
     if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify({ event: 'progress', assignmentId, progress, status, data }));
+      ws.send(JSON.stringify({ event: 'progress', assignmentId, progress, status, message, data }));
     }
   }
 

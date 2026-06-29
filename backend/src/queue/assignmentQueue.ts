@@ -22,32 +22,18 @@ export const startAssignmentWorker = () => {
       console.log(`Processing job ${job.id} for assignment ${assignmentId}`);
 
       try {
-        // 1. Update assignment to "generating" and 20% progress
-        await Assignment.findByIdAndUpdate(assignmentId, {
-          status: 'generating',
-          progress: 20,
-        });
-        wsManager.sendProgress(assignmentId, 20, 'generating');
-
-        // 2. Mock some progress/delays to feel premium and realistic
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        await Assignment.findByIdAndUpdate(assignmentId, { progress: 40 });
-        wsManager.sendProgress(assignmentId, 40, 'generating');
-
-        // 3. Invoke Gemini AI Generation
-        console.log(`Calling Gemini API for assignment ${assignmentId}...`);
+        console.log(`[Agent Orchestrator] Starting multi-agent queue worker pipeline for assignment ${assignmentId}...`);
         const generatedPaper = await generateAssignmentPaper({
           title,
           className,
           subject,
           questionTypes,
           additionalInfo,
+          onProgress: async (status, percentage) => {
+            await Assignment.findByIdAndUpdate(assignmentId, { progress: percentage });
+            wsManager.sendProgress(assignmentId, percentage, 'generating', status);
+          }
         });
-
-        // 4. Intermediate progress update (80%)
-        await Assignment.findByIdAndUpdate(assignmentId, { progress: 80 });
-        wsManager.sendProgress(assignmentId, 80, 'generating');
-        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         // 5. Complete task
         const updatedAssignment = await Assignment.findByIdAndUpdate(
@@ -86,7 +72,7 @@ export const startAssignmentWorker = () => {
           status: 'failed',
           progress: 100, // or keep last progress
         });
-        wsManager.sendProgress(assignmentId, 100, 'failed');
+        wsManager.sendProgress(assignmentId, 100, 'failed', 'Generation failed');
 
         throw error;
       }
