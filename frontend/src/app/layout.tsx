@@ -73,8 +73,17 @@ export default function RootLayout({
           </div>
 
           {/* Dynamic Scrollable Page Content Views - Gray background like Figma */}
-          <main className="flex-1 min-w-0 min-h-0 overflow-y-auto px-5 lg:px-8 py-6 bg-[#F5F5F5] dark:bg-[#121212] print:p-0 print:overflow-visible print:block print:h-auto print:bg-white transition-colors duration-200">
-            {children}
+          <main className="flex-1 min-w-0 min-h-0 overflow-y-auto px-5 lg:px-8 py-6 bg-[#F8F9FA] dark:bg-[#0B0F19] print:p-0 print:overflow-visible print:block print:h-auto print:bg-white transition-colors duration-200 relative">
+            {/* Background Glow Blobs for Glassmorphism */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none select-none print:hidden z-0 opacity-40 dark:opacity-20">
+              <div className="absolute top-[10%] left-[20%] w-[350px] h-[350px] rounded-full bg-blue-300 dark:bg-blue-900/40 blur-[120px]" />
+              <div className="absolute bottom-[20%] right-[10%] w-[450px] h-[450px] rounded-full bg-emerald-200 dark:bg-emerald-900/30 blur-[140px]" />
+              <div className="absolute top-[40%] right-[30%] w-[300px] h-[300px] rounded-full bg-purple-200 dark:bg-purple-900/30 blur-[130px]" />
+            </div>
+            
+            <div className="relative z-10">
+              {children}
+            </div>
           </main>
         </div>
       </body>
