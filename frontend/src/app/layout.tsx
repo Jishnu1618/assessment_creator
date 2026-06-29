@@ -45,8 +45,9 @@ export default function RootLayout({
         {/* Absolute Mesh Gradient Background */}
         <div className="fixed inset-0 z-[-1] pointer-events-none print:hidden">
           {/* Light Mode ambient blurs */}
-          <div className="dark:hidden absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-sky-200/40 blur-[100px]" />
-          <div className="dark:hidden absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-emerald-200/30 blur-[120px]" />
+          <div className="dark:hidden absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-sky-200/35 blur-[120px]" />
+          <div className="dark:hidden absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-emerald-200/25 blur-[140px]" />
+          <div className="dark:hidden absolute top-[40%] right-[20%] w-[450px] h-[450px] rounded-full bg-purple-200/25 blur-[130px]" />
           
           {/* Dark Mode ambient blurs */}
           <div className="hidden dark:block absolute -top-[20%] -right-[20%] w-[700px] h-[700px] rounded-full bg-purple-900/20 blur-[180px] animate-pulse" style={{ animationDuration: '8s' }} />

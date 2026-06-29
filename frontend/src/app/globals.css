@@ -30,7 +30,7 @@ html.dark {
 }
 
 html.dark body {
-  background-color: #1A1A1A;
+  background-color: transparent;
 }
 
 @theme {
@@ -55,7 +55,6 @@ html.dark body {
 
 body {
   /* Main canvas uses light gray like Figma - sidebar/cards use white */
-  background-color: #F5F5F5;
   color: var(--color-primary);
   font-family: var(--font-sans);
   min-height: 100vh;
