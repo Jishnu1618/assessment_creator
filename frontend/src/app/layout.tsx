@@ -56,7 +56,7 @@ export default function RootLayout({
         </div>
 
         {/* Desktop Sidebar (Left Panel) - Fixed width 304px - White bg - Hidden during printing! */}
-        <aside className="hidden lg:block w-[304px] shrink-0 h-screen bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl border-r border-white/20 dark:border-zinc-800/30 z-30 print:hidden transition-colors duration-200">
+        <aside className="hidden lg:block w-[304px] shrink-0 h-screen bg-slate-900/5 dark:bg-zinc-950/20 backdrop-blur-xl border-r border-slate-900/10 dark:border-zinc-800/35 z-30 print:hidden transition-colors duration-200">
           <Sidebar />
         </aside>
 
@@ -70,7 +70,7 @@ export default function RootLayout({
             />
             {/* Sliding Panel */}
             <div className="relative w-[304px] max-w-[85vw] h-full flex flex-col z-50 animate-slide-in">
-              <div className="h-full bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl shadow-2xl transition-colors duration-200">
+              <div className="h-full bg-slate-900/10 dark:bg-zinc-950/20 backdrop-blur-xl shadow-2xl transition-colors duration-200">
                 <Sidebar isMobile={true} onClose={() => setIsMobileMenuOpen(false)} />
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function RootLayout({
         {/* Main Application Container (Right Panel) */}
         <div className="flex-grow flex flex-col min-w-0 h-screen overflow-hidden print:h-auto print:overflow-visible print:block z-10">
           {/* Header Dashboard Bar - White background - Fixed 56px height - Hidden during printing! */}
-          <div className="h-[56px] shrink-0 bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl border-b border-white/20 dark:border-zinc-850/30 print:hidden transition-colors duration-200">
+          <div className="h-[56px] shrink-0 bg-slate-900/5 dark:bg-zinc-950/20 backdrop-blur-xl border-b border-slate-900/10 dark:border-zinc-850/30 print:hidden transition-colors duration-200">
             <Header onMenuOpen={() => setIsMobileMenuOpen(true)} />
           </div>
 
