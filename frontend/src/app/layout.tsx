@@ -41,7 +41,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="h-full antialiased print:h-auto print:overflow-visible">
-      <body className="text-primary dark:text-[#EFEFEF] min-h-screen flex overflow-hidden font-sans print:h-auto print:overflow-visible print:block bg-[#F5F5F5] dark:bg-[#121212] transition-colors duration-200">
+      <body className="text-slate-900 dark:text-zinc-50 min-h-screen flex overflow-hidden font-sans print:h-auto print:overflow-visible print:block bg-slate-50 dark:bg-zinc-950 transition-colors duration-200">
         
         {/* Desktop Sidebar (Left Panel) - Fixed width 304px - White bg - Hidden during printing! */}
         <aside className="hidden lg:block w-[304px] shrink-0 h-screen bg-white dark:bg-[#1A1A1A] border-r border-[#E8E8E8] dark:border-[#2D2D2D] z-30 print:hidden transition-colors duration-200" style={{ boxShadow: '2px 0 8px rgba(0,0,0,0.06)' }}>
@@ -73,12 +73,17 @@ export default function RootLayout({
           </div>
 
           {/* Dynamic Scrollable Page Content Views - Gray background like Figma */}
-          <main className="flex-1 min-w-0 min-h-0 overflow-y-auto px-5 lg:px-8 py-6 bg-[#F8F9FA] dark:bg-[#0B0F19] print:p-0 print:overflow-visible print:block print:h-auto print:bg-white transition-colors duration-200 relative">
-            {/* Background Glow Blobs for Glassmorphism */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none select-none print:hidden z-0 opacity-40 dark:opacity-20">
-              <div className="absolute top-[10%] left-[20%] w-[350px] h-[350px] rounded-full bg-blue-300 dark:bg-blue-900/40 blur-[120px]" />
-              <div className="absolute bottom-[20%] right-[10%] w-[450px] h-[450px] rounded-full bg-emerald-200 dark:bg-emerald-900/30 blur-[140px]" />
-              <div className="absolute top-[40%] right-[30%] w-[300px] h-[300px] rounded-full bg-purple-200 dark:bg-purple-900/30 blur-[130px]" />
+          <main className="flex-1 min-w-0 min-h-0 overflow-y-auto px-5 lg:px-8 py-6 bg-slate-50 dark:bg-zinc-950 print:p-0 print:overflow-visible print:block print:h-auto print:bg-white transition-colors duration-200 relative">
+            {/* Background Glow Blobs for Spatial Glassmorphism */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none select-none print:hidden -z-10">
+              {/* Dark mode glowing mesh circles */}
+              <div className="hidden dark:block absolute -top-[20%] -right-[20%] w-[700px] h-[700px] rounded-full bg-purple-900/20 blur-[180px] animate-pulse" style={{ animationDuration: '8s' }} />
+              <div className="hidden dark:block absolute -bottom-[20%] -left-[20%] w-[800px] h-[800px] rounded-full bg-orange-900/15 blur-[200px] animate-pulse" style={{ animationDuration: '10s' }} />
+              <div className="hidden dark:block absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full bg-zinc-800/10 blur-[120px]" />
+
+              {/* Light mode soft pastel circles */}
+              <div className="dark:hidden absolute -top-[10%] -right-[10%] w-[600px] h-[600px] rounded-full bg-sky-400/10 blur-[150px]" />
+              <div className="dark:hidden absolute -bottom-[10%] -left-[10%] w-[700px] h-[700px] rounded-full bg-emerald-400/5 blur-[180px]" />
             </div>
             
             <div className="relative z-10">

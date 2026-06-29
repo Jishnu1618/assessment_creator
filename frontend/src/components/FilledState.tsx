@@ -60,32 +60,32 @@ export default function FilledState() {
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-5 transition-all duration-300 ease-in-out hover:translate-y-[-2px] hover:shadow-md">
-          <div className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-display">Total Creator Runs</div>
-          <div className="text-3xl font-extrabold text-zinc-900 dark:text-white mt-1 font-display tracking-tight">{assignments.length}</div>
-          <div className="text-[12px] text-zinc-500 mt-1 flex items-center gap-1.5">
-            <FileText className="w-3.5 h-3.5 text-zinc-400" />
+        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+          <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Total Creator Runs</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">{assignments.length}</div>
+          <div className="text-[12px] text-slate-550 dark:text-zinc-500 mt-1 flex items-center gap-1.5">
+            <FileText className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
             <span>Assignments deployed</span>
           </div>
         </div>
         
-        <div className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-5 transition-all duration-300 ease-in-out hover:translate-y-[-2px] hover:shadow-md">
-          <div className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-display">Active Agent Cycles</div>
-          <div className="text-3xl font-extrabold text-zinc-900 dark:text-white mt-1 font-display tracking-tight">
+        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+          <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Active Agent Cycles</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">
             {assignments.filter(a => a.status === 'generating').length}
           </div>
-          <div className="text-[12px] text-zinc-500 mt-1 flex items-center gap-1.5">
+          <div className="text-[12px] text-slate-550 dark:text-zinc-500 mt-1 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-500 animate-pulse" />
             <span>AI pipelines executing</span>
           </div>
         </div>
 
-        <div className="bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md border border-zinc-200/50 dark:border-zinc-800/50 rounded-2xl p-5 transition-all duration-300 ease-in-out hover:translate-y-[-2px] hover:shadow-md">
-          <div className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-display">Completed Papers</div>
-          <div className="text-3xl font-extrabold text-zinc-900 dark:text-white mt-1 font-display tracking-tight">
+        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+          <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Completed Papers</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">
             {assignments.filter(a => a.status === 'completed').length}
           </div>
-          <div className="text-[12px] text-zinc-500 mt-1 flex items-center gap-1.5">
+          <div className="text-[12px] text-slate-550 dark:text-zinc-500 mt-1 flex items-center gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
             <span>Graded & printable papers</span>
           </div>
