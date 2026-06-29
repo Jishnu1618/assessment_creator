@@ -781,10 +781,16 @@ export const useStore = create<EduStore>((set, get) => ({
 
         // Handle intermediate progress updates
         if (data.event === 'progress') {
+          // Robust checking: if status contains the bracketed agent tag, use it as status text,
+          // and fallback the internal status to 'generating'.
+          const isAgentLog = data.status && data.status.startsWith('[');
+          const activeStatus = isAgentLog ? 'generating' : (data.status || 'generating');
+          const activeStatusText = isAgentLog ? data.status : (data.message || 'Generating assignment content...');
+
           set({
             generationProgress: data.progress,
-            generationStatus: data.status,
-            generationStatusText: data.message || 'Generating assignment content...',
+            generationStatus: activeStatus as any,
+            generationStatusText: activeStatusText,
           });
           
           // Legacy: handle completed status within progress event
