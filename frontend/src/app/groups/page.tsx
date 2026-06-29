@@ -40,7 +40,7 @@ function CreateGroupModal({ onClose, onCreate }: { onClose: () => void; onCreate
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 p-6 animate-scale-up z-10">
+      <div className="relative bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 shadow-2xl w-full max-w-sm mx-4 p-6 animate-scale-up z-10">
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-[16px] font-bold font-display text-primary">Create Group</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-[#F0F0F0] cursor-pointer">
@@ -137,7 +137,7 @@ export default function GroupsPage() {
         </div>
 
         {/* Search */}
-        <div className="bg-white rounded-full border border-[#E5E5E5] h-11 px-4 flex items-center gap-2 shadow-sm mb-5 max-w-sm">
+        <div className="bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/40 rounded-full h-11 px-4 flex items-center gap-2 shadow-xs mb-5 max-w-sm backdrop-blur-md">
           <Search className="w-4 h-4 text-[#A9A9A9] shrink-0" />
           <input
             type="text"
@@ -153,7 +153,7 @@ export default function GroupsPage() {
           {filtered.map((group) => (
             <div
               key={group.id}
-              className="bg-white rounded-2xl border border-[#EBEBEB] p-5 hover:shadow-sm hover:border-[#D0D0D0] transition-all cursor-pointer group"
+              className="bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/40 rounded-2xl p-5 hover:bg-white/60 dark:hover:bg-zinc-800/50 hover:border-white/80 dark:hover:border-zinc-700/50 transition-all cursor-pointer group shadow-md shadow-slate-200/20 dark:shadow-none hover:-translate-y-0.5"
             >
               <div className="flex items-start justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">

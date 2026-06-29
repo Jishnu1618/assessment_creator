@@ -161,7 +161,7 @@ export default function CreateAssignment() {
       {/* Premium Glassmorphic Overlay Loader */}
       {isGenerating && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 select-none">
-          <div className="bg-white rounded-2xl border border-[#F0F0F0] p-8 max-w-[480px] w-full shadow-2xl flex flex-col items-center text-center animate-scale-up">
+          <div className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 p-8 max-w-[480px] w-full shadow-2xl flex flex-col items-center text-center animate-scale-up">
             <div className="w-16 h-16 rounded-2xl bg-[#F8F8F8] border border-[#F0F0F0] flex items-center justify-center text-primary mb-6 shadow-sm animate-pulse relative">
               <Sparkles className="w-7 h-7 text-zinc-700" style={{ animationDuration: '3s' }} />
               <Loader2 className="w-10 h-10 animate-spin text-zinc-400 absolute opacity-30" />
@@ -230,7 +230,7 @@ export default function CreateAssignment() {
       </div>
 
       {/* Assignment Details White Card */}
-      <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl border border-[#EBEBEB] dark:border-[#2D2D2D] p-6 lg:p-8 flex flex-col gap-6 w-full shadow-sm transition-colors duration-200">
+      <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 p-6 lg:p-8 flex flex-col gap-6 w-full shadow-xl transition-all duration-200">
         
         {/* Step Header */}
         <div>
@@ -268,7 +268,7 @@ export default function CreateAssignment() {
 
             {uploadedFileName ? (
               <div className="flex flex-col items-center animate-scale-up">
-                <div className="w-12 h-12 bg-white dark:bg-[#1A1A1A] rounded-xl flex items-center justify-center border border-[#E5E5E5] dark:border-[#2D2D2D] text-primary dark:text-white mb-3 shadow-sm shrink-0">
+                <div className="w-12 h-12 bg-white/40 dark:bg-zinc-800/40 rounded-xl flex items-center justify-center border border-white/60 dark:border-zinc-700/60 text-primary dark:text-white mb-3 shadow-sm shrink-0">
                   <FileCheck className="w-6 h-6" />
                 </div>
                 <span className="text-[15px] font-bold font-display text-primary dark:text-white truncate max-w-[280px]">{uploadedFileName}</span>
@@ -283,14 +283,14 @@ export default function CreateAssignment() {
               </div>
             ) : (
               <div className="flex flex-col items-center">
-                <div className="w-11 h-11 rounded-full border border-[#E5E5E5] dark:border-[#2D2D2D] bg-white dark:bg-[#1A1A1A] flex items-center justify-center text-primary dark:text-white shadow-sm group-hover:scale-105 transition-transform mb-3 shrink-0">
+                <div className="w-11 h-11 rounded-full border border-white/60 dark:border-zinc-700/60 bg-white/40 dark:bg-zinc-800/40 flex items-center justify-center text-primary dark:text-white shadow-sm group-hover:scale-105 transition-transform mb-3 shrink-0">
                   <Upload className="w-5 h-5 text-primary dark:text-white stroke-[2]" />
                 </div>
                 <span className="text-[15px] font-medium font-display text-primary dark:text-white">Choose a file or drag & drop it here</span>
                 <span className="text-[13px] text-[#A9A9A9] font-normal font-display mt-1">JPEG, PNG, upto 10MB</span>
                 <button
                   onClick={(e) => { e.stopPropagation(); triggerFileSelect(); }}
-                  className="mt-4 bg-white dark:bg-[#1A1A1A] border border-[#DEDEDE] dark:border-[#2D2D2D] hover:border-[#C0C0C0] dark:hover:border-[#505050] hover:bg-[#F8F8F8] dark:hover:bg-[#202020] text-primary dark:text-white text-[13px] font-semibold py-2 px-6 rounded-lg transition-all active:scale-[0.97] cursor-pointer"
+                  className="mt-4 bg-white/30 dark:bg-zinc-800/30 border border-white/50 dark:border-zinc-700/50 hover:border-white/70 dark:hover:border-zinc-600/50 hover:bg-white/55 dark:hover:bg-zinc-800/55 text-primary dark:text-white text-[13px] font-semibold py-2 px-6 rounded-lg transition-all active:scale-[0.97] cursor-pointer"
                 >
                   Browse Files
                 </button>
@@ -377,7 +377,7 @@ export default function CreateAssignment() {
 
                 {/* Questions counter */}
                 <div className="w-28 flex items-center justify-center">
-                  <div className="flex items-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-xl px-1 py-0.5 gap-1">
+                  <div className="flex items-center bg-white/40 dark:bg-zinc-800/40 border border-white/60 dark:border-zinc-700/60 rounded-xl px-1 py-0.5 gap-1 shadow-xs">
                     <button
                       onClick={() => updateQuestionCounter(row.id, 'count', 'dec')}
                       className="w-7 h-7 rounded-lg flex items-center justify-center text-[#A9A9A9] dark:text-[#888888] hover:text-primary dark:hover:text-white hover:bg-[#F5F5F5] dark:hover:bg-[#2D2D2D] text-[16px] font-bold transition-colors select-none cursor-pointer"
@@ -398,7 +398,7 @@ export default function CreateAssignment() {
 
                 {/* Marks counter */}
                 <div className="w-24 flex items-center justify-center">
-                  <div className="flex items-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-xl px-1 py-0.5 gap-1">
+                  <div className="flex items-center bg-white/40 dark:bg-zinc-800/40 border border-white/60 dark:border-zinc-700/60 rounded-xl px-1 py-0.5 gap-1 shadow-xs">
                     <button
                       onClick={() => updateQuestionCounter(row.id, 'marks', 'dec')}
                       className="w-7 h-7 rounded-lg flex items-center justify-center text-[#A9A9A9] dark:text-[#888888] hover:text-primary dark:hover:text-white hover:bg-[#F5F5F5] dark:hover:bg-[#2D2D2D] text-[16px] font-bold transition-colors select-none cursor-pointer"
@@ -523,7 +523,7 @@ export default function CreateAssignment() {
       <div className="flex items-center justify-between w-full mt-2 select-none">
         <button
           onClick={() => router.push('/')}
-          className="bg-white dark:bg-[#1A1A1A] border border-[#DEDEDE] dark:border-[#2D2D2D] text-primary dark:text-white hover:bg-[#F5F5F5] dark:hover:bg-[#202020] font-medium font-display py-3 px-7 rounded-full flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.97] cursor-pointer h-[46px] shadow-sm"
+          className="bg-white/30 dark:bg-zinc-900/30 border border-white/50 dark:border-zinc-800/40 text-primary dark:text-white hover:bg-white/50 dark:hover:bg-zinc-800/50 font-medium font-display py-3 px-7 rounded-full flex items-center justify-center gap-1.5 transition-all duration-200 active:scale-[0.97] cursor-pointer h-[46px] shadow-sm backdrop-blur-md"
         >
           <ChevronLeft className="w-4 h-4 stroke-[2]" />
           <span className="text-[15px]">Previous</span>

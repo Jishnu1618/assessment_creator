@@ -17,7 +17,7 @@ export default function OutputView() {
 
   if (!generatedPaper) {
     return (
-      <div className="w-full max-w-lg mx-auto mt-20 bg-white dark:bg-[#1A1A1A] p-8 rounded-2xl border border-[#EBEBEB] dark:border-[#2D2D2D] text-center select-none shadow-sm transition-colors duration-200">
+      <div className="w-full max-w-lg mx-auto mt-20 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl p-8 rounded-2xl border border-white/60 dark:border-zinc-800/40 text-center select-none shadow-xl transition-all duration-200">
         <h3 className="text-[18px] font-bold text-primary dark:text-white mb-2">No Assignment Loaded</h3>
         <p className="text-sm text-muted dark:text-[#A0A0A0] mb-6">No question paper was found or generated for the active session.</p>
         <button onClick={() => router.push('/')} className="bg-primary hover:bg-black dark:hover:bg-white dark:hover:text-black text-white py-2.5 px-6 rounded-full font-semibold transition-colors">
@@ -102,7 +102,7 @@ export default function OutputView() {
       </div>
 
       {/* Printable Question Paper White Content Card */}
-      <div className="bg-white dark:bg-[#1A1A1A] border border-[#EBEBEB] dark:border-[#2D2D2D] rounded-b-2xl rounded-t-none px-8 lg:px-12 py-8 w-full flex flex-col gap-5 shadow-sm print:shadow-none print:border-none print:px-0 print:py-0 print:m-0 print:rounded-none transition-colors duration-200">
+      <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl border border-white/60 dark:border-zinc-800/40 rounded-b-2xl rounded-t-none px-8 lg:px-12 py-8 w-full flex flex-col gap-5 shadow-xl print:shadow-none print:border-none print:px-0 print:py-0 print:m-0 print:rounded-none print:bg-white print:backdrop-blur-none transition-all duration-200">
         
         {/* Print controls bar - hidden during print */}
         <div className="flex items-center justify-between pb-4 border-b border-[#F0F0F0] dark:border-[#2D2D2D] print:hidden select-none">

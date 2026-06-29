@@ -139,7 +139,7 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
     <>
       {showSchoolModal && <SchoolModal onClose={() => setShowSchoolModal(false)} />}
 
-      <div className="flex flex-col h-full bg-white dark:bg-[#1A1A1A] border-r border-[#E8E8E8] dark:border-[#2D2D2D] px-5 py-7 select-none relative w-full transition-colors duration-200">
+      <div className="flex flex-col h-full bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl border-r border-white/20 dark:border-zinc-800/30 px-5 py-7 select-none relative w-full transition-colors duration-200">
         {/* Mobile close button */}
         {isMobile && (
           <button 
@@ -216,8 +216,8 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
                 onClick={() => handleTabClick(item.id)}
                 className={`w-[254px] ${isHome ? 'h-[40px]' : 'h-[38px]'} flex items-center justify-between px-3 transition-all duration-150 group cursor-pointer ${
                   isActive
-                    ? 'bg-[#F0F0F0] dark:bg-[#2D2D2D] text-[#303030] dark:text-white font-medium'
-                    : 'text-[rgba(94,94,94,0.8)] dark:text-[#A0A0A0] hover:text-[#303030] dark:hover:text-white hover:bg-[#F8F8F8] dark:hover:bg-[#202020] font-normal'
+                    ? 'bg-white/40 dark:bg-white/10 text-slate-900 dark:text-white font-semibold border border-white/40 dark:border-white/5 shadow-xs'
+                    : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-zinc-800/20 font-normal border border-transparent'
                 }`}
                 style={{
                   borderRadius: '8px',
@@ -249,15 +249,15 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
         </nav>
 
         {/* ── Footer section ───────────────────────────────────── */}
-        <div className="mt-auto pt-5 border-t border-[#F0F0F0] dark:border-[#2D2D2D] space-y-1 w-full">
+        <div className="mt-auto pt-5 border-t border-white/20 dark:border-zinc-850/30 space-y-1 w-full">
           {/* Settings button */}
           <button
             id="nav-settings"
             onClick={() => handleTabClick('Settings')}
             className={`w-full flex items-center gap-3 px-3 py-[11px] rounded-lg transition-all duration-150 group cursor-pointer ${
               activeTab === 'Settings'
-                ? 'bg-[#F0F0F0] dark:bg-[#2D2D2D] text-primary dark:text-white font-medium'
-                : 'text-muted dark:text-[#A0A0A0] hover:text-primary dark:hover:text-white hover:bg-[#F8F8F8] dark:hover:bg-[#202020] font-normal'
+                ? 'bg-white/40 dark:bg-white/10 text-slate-900 dark:text-white font-semibold border border-white/40 dark:border-white/5 shadow-xs'
+                : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-zinc-800/20 font-normal border border-transparent'
             }`}
           >
             <Settings className={`w-[18px] h-[18px] shrink-0 ${activeTab === 'Settings' ? 'text-primary dark:text-white' : 'text-[#A9A9A9] dark:text-[#888888]'}`} />
@@ -268,7 +268,7 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
           <button
             id="school-selector-btn"
             onClick={() => setShowSchoolModal(true)}
-            className="w-full flex items-center gap-3 p-3 mt-2 bg-white dark:bg-[#202020] rounded-xl border border-[#EBEBEB] dark:border-[#2D2D2D] shadow-sm hover:border-[#D0D0D0] dark:hover:border-[#404040] hover:shadow transition-all duration-200 cursor-pointer group text-left"
+            className="w-full flex items-center gap-3 p-3 mt-2 bg-white/30 dark:bg-zinc-900/30 backdrop-blur-md rounded-xl border border-white/50 dark:border-zinc-800/40 shadow-sm hover:border-white/70 dark:hover:border-zinc-700/50 hover:bg-white/40 dark:hover:bg-zinc-900/50 hover:shadow transition-all duration-200 cursor-pointer group text-left"
             aria-label="Select school"
           >
             {/* Ape avatar in circular frame - 59×56 matching Figma */}

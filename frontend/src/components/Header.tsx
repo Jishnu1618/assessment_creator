@@ -153,7 +153,7 @@ function NotificationsDropdown({ onClose }: { onClose: () => void }) {
   return (
     <>
       <div className="fixed inset-0 z-40 bg-transparent" onClick={onClose} />
-      <div className="absolute right-0 mt-2 w-80 bg-white rounded-2xl border border-[#F0F0F0] shadow-xl p-3 z-50 animate-fade-in">
+      <div className="absolute right-0 mt-2 w-80 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl rounded-2xl border border-white/40 dark:border-zinc-800/50 shadow-xl p-3 z-50 animate-fade-in">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-[14px] font-bold font-display text-primary">Notifications</h3>
           <button
@@ -209,7 +209,7 @@ function ProfileDropdown({ onClose, onShowLogin }: { onClose: () => void; onShow
   return (
     <>
       <div className="fixed inset-0 z-40 bg-transparent" onClick={onClose} />
-      <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl border border-[#F0F0F0] shadow-lg p-2 z-50 flex flex-col gap-0.5 select-none animate-fade-in">
+      <div className="absolute right-0 mt-2 w-56 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl rounded-xl border border-white/40 dark:border-zinc-800/50 shadow-lg p-2 z-50 flex flex-col gap-0.5 select-none animate-fade-in">
         
         {/* User info header */}
         {user && (
@@ -294,7 +294,7 @@ export default function Header({ onMenuOpen = () => {} }: { onMenuOpen?: () => v
     <>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
 
-      <header className="bg-white h-full px-6 flex items-center justify-between select-none relative z-40 w-full">
+      <header className="bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl h-full px-6 flex items-center justify-between select-none relative z-40 w-full transition-colors duration-200 border-b border-white/20 dark:border-zinc-800/30">
         {/* Left side breadcrumbs */}
         <div className="flex items-center gap-3">
           {/* Mobile menu trigger */}
@@ -339,7 +339,7 @@ export default function Header({ onMenuOpen = () => {} }: { onMenuOpen?: () => v
                 setShowNotifications(!showNotifications);
                 setShowProfileMenu(false);
               }}
-              className="w-9 h-9 rounded-full hover:bg-[#F0F0F0] flex items-center justify-center text-muted hover:text-primary transition-all relative active:scale-95 cursor-pointer shrink-0"
+              className="w-9 h-9 rounded-full hover:bg-white/40 dark:hover:bg-zinc-800/40 flex items-center justify-center text-muted hover:text-primary dark:text-[#A0A0A0] dark:hover:text-white transition-all relative active:scale-95 cursor-pointer shrink-0"
               aria-label={`Notifications${notificationCount > 0 ? ` (${notificationCount} unread)` : ''}`}
             >
               <Bell className="w-[18px] h-[18px] stroke-[1.8]" />
@@ -364,7 +364,7 @@ export default function Header({ onMenuOpen = () => {} }: { onMenuOpen?: () => v
                   setShowNotifications(false);
                 }
               }}
-              className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full border border-[#EBEBEB] hover:bg-[#F8F8F8] transition-all cursor-pointer select-none active:scale-[0.98] h-10"
+              className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full border border-white/30 dark:border-zinc-800/40 bg-white/20 dark:bg-zinc-900/30 backdrop-blur-md hover:bg-white/40 dark:hover:bg-zinc-800/40 transition-all cursor-pointer select-none active:scale-[0.98] h-10 text-primary dark:text-white"
             >
               {/* Ape avatar - matches Figma profile section */}
               <div className="w-8 h-8 rounded-full overflow-hidden border border-[#E5E5E5] shrink-0">

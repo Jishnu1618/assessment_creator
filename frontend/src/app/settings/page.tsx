@@ -52,10 +52,10 @@ function AppearanceTab() {
               <button
                 key={t.id}
                 onClick={() => setTheme(t.id)}
-                className={`flex flex-col items-center gap-3 p-5 rounded-2xl border-2 transition-all cursor-pointer ${
+                className={`flex flex-col items-center gap-3 p-5 rounded-2xl border transition-all cursor-pointer ${
                   isActive
-                    ? 'border-orange-400 dark:border-orange-500 bg-orange-50 dark:bg-orange-950/20 shadow-sm'
-                    : 'border-[#EBEBEB] dark:border-[#2D2D2D] bg-white dark:bg-[#1E1E1E] hover:border-[#D0D0D0] dark:hover:border-[#404040] hover:bg-[#F8F8F8] dark:hover:bg-[#252525]'
+                    ? 'border-orange-400 dark:border-orange-550 bg-white/60 dark:bg-white/10 shadow-sm'
+                    : 'border-white/40 dark:border-zinc-800/40 bg-white/20 dark:bg-zinc-900/20 hover:border-white/60 dark:hover:border-zinc-700/50 hover:bg-white/40 dark:hover:bg-zinc-900/40'
                 }`}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'bg-orange-100 dark:bg-orange-900/30' : 'bg-[#F0F0F0] dark:bg-[#2D2D2D]'}`}>
@@ -389,7 +389,7 @@ function SettingsPageContent() {
       <div className="flex flex-col sm:flex-row gap-6">
         {/* Sidebar tabs */}
         <nav className="sm:w-48 shrink-0">
-          <div className="bg-white dark:bg-[#1A1A1A] rounded-2xl border border-[#EBEBEB] dark:border-[#2D2D2D] p-2 space-y-0.5">
+          <div className="bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 p-2 space-y-0.5 shadow-sm">
             {TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -400,8 +400,8 @@ function SettingsPageContent() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-orange-50 dark:bg-orange-950/20 text-orange-600 dark:text-orange-400 font-semibold shadow-sm'
-                      : 'text-muted dark:text-[#A0A0A0] hover:text-primary dark:hover:text-white hover:bg-[#F8F8F8] dark:hover:bg-[#202020] font-normal'
+                      ? 'bg-white/60 dark:bg-white/10 text-orange-650 dark:text-orange-400 font-semibold border border-white/50 dark:border-white/5 shadow-xs'
+                      : 'text-slate-600 dark:text-[#A0A0A0] hover:text-slate-900 dark:hover:text-white hover:bg-white/20 dark:hover:bg-zinc-800/20 font-normal border border-transparent'
                   }`}
                 >
                   <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-orange-500 dark:text-orange-400' : 'text-[#A9A9A9] dark:text-[#888888]'}`} />
@@ -413,7 +413,7 @@ function SettingsPageContent() {
         </nav>
 
         {/* Content */}
-        <div className="flex-1 bg-white dark:bg-[#1A1A1A] rounded-2xl border border-[#EBEBEB] dark:border-[#2D2D2D] p-6 min-h-[400px]">
+        <div className="flex-1 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 p-6 min-h-[400px] shadow-xl">
           {renderContent()}
         </div>
       </div>

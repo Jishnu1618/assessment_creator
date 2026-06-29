@@ -68,7 +68,7 @@ export default function LibraryPage() {
       {showUpload && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowUpload(false)} />
-          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 p-6 animate-scale-up z-10">
+          <div className="relative bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl rounded-2xl border border-white/60 dark:border-zinc-800/40 shadow-2xl w-full max-w-sm mx-4 p-6 animate-scale-up z-10">
             <div className="flex items-center justify-between mb-5">
               <h2 className="text-[16px] font-bold font-display text-primary">Add to Library</h2>
               <button onClick={() => setShowUpload(false)} className="p-1.5 rounded-lg hover:bg-[#F0F0F0] cursor-pointer">
@@ -142,7 +142,7 @@ export default function LibraryPage() {
 
         {/* Filters + Search */}
         <div className="flex items-center gap-3 mb-5 flex-wrap">
-          <div className="bg-white rounded-full border border-[#E5E5E5] h-10 px-4 flex items-center gap-2 shadow-sm">
+          <div className="bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/40 rounded-full h-10 px-4 flex items-center gap-2 shadow-xs backdrop-blur-md">
             <Search className="w-3.5 h-3.5 text-[#A9A9A9] shrink-0" />
             <input
               type="text"
@@ -159,7 +159,7 @@ export default function LibraryPage() {
               className={`px-3 py-1.5 rounded-full text-[13px] font-semibold font-display transition-all cursor-pointer ${
                 activeType === type
                   ? 'bg-primary text-white'
-                  : 'bg-white border border-[#EBEBEB] text-muted hover:border-[#D0D0D0]'
+                  : 'bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/40 text-muted dark:text-[#A0A0A0] hover:border-white/80 dark:hover:border-zinc-700/50 hover:bg-white/60 dark:hover:bg-zinc-900/50 backdrop-blur-md'
               }`}
             >
               {type === 'all' ? 'All' : typeLabels[type] + 's'}
@@ -175,7 +175,7 @@ export default function LibraryPage() {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-xl border border-[#EBEBEB] px-4 py-3.5 flex items-center gap-4 hover:border-[#D0D0D0] hover:shadow-sm transition-all group"
+                className="bg-white/40 dark:bg-zinc-900/40 border border-white/60 dark:border-zinc-800/40 px-4 py-3.5 flex items-center gap-4 hover:bg-white/60 dark:hover:bg-zinc-800/50 hover:border-white/80 dark:hover:border-zinc-700/50 hover:shadow-md transition-all group"
               >
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style={{ background: color + '18' }}>
                   <Icon className="w-4 h-4" style={{ color }} />
