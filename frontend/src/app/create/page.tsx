@@ -217,10 +217,16 @@ export default function CreateAssignment() {
         </div>
       </div>
 
-      {/* 2-Step Progress bar (2 segments: step 1 full dark, step 2 lighter) */}
-      <div className="w-full flex items-center gap-2 px-0">
-        <div className="flex-1 h-[3px] bg-primary rounded-full" />
-        <div className="flex-[3] h-[3px] bg-[#DEDEDE] rounded-full" />
+      {/* Stepper Progress Indicator */}
+      <div className="w-full flex items-center gap-3 px-1 my-2">
+        <div className="flex-1 flex flex-col gap-1.5">
+          <div className="h-[2px] bg-primary rounded-full transition-all duration-300" />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-primary font-display">Step 1: Configuration</span>
+        </div>
+        <div className="flex-1 flex flex-col gap-1.5">
+          <div className="h-[2px] bg-zinc-200 dark:bg-zinc-800 rounded-full transition-all duration-300" />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-display">Step 2: Generation Logs</span>
+        </div>
       </div>
 
       {/* Assignment Details White Card */}
@@ -240,7 +246,7 @@ export default function CreateAssignment() {
             placeholder="e.g. Quiz on Photosynthesis, Midterm Biology Test"
             value={assignmentName}
             onChange={(e) => setAssignmentName(e.target.value)}
-            className="w-full bg-white dark:bg-[#1A1A1A] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white rounded-xl px-4 py-3 text-[15px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none transition-all"
+            className="w-full bg-transparent border border-zinc-205 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl px-4 py-3 text-[15px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none transition-all"
           />
         </div>
 
@@ -307,7 +313,7 @@ export default function CreateAssignment() {
                 console.error(err);
               }
             }}
-            className="relative max-w-full cursor-pointer"
+            className="relative w-full h-[46px] cursor-pointer"
           >
             <input
               ref={dateInputRef}
@@ -336,7 +342,7 @@ export default function CreateAssignment() {
                   setDueDate('');
                 }
               }}
-              className="w-full bg-white dark:bg-[#1A1A1A] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white rounded-xl pl-4 pr-11 py-3 text-[15px] font-medium font-display text-primary dark:text-white outline-none transition-all cursor-pointer"
+              className="w-full h-full bg-transparent border border-zinc-205 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl pl-4 pr-11 text-[15px] font-medium font-display text-primary dark:text-white outline-none transition-all cursor-pointer"
             />
             <Calendar className="w-5 h-5 text-[#A9A9A9] absolute right-4 top-1/2 -translate-y-1/2 stroke-[1.8] pointer-events-none" />
           </div>
@@ -360,7 +366,7 @@ export default function CreateAssignment() {
                   <select
                     value={row.type}
                     onChange={(e) => updateQuestionTypeSelection(row.id, e.target.value)}
-                    className="w-full appearance-none bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white rounded-xl px-4 py-2.5 text-[14px] font-medium font-display text-primary dark:text-white outline-none transition-all pr-8 cursor-pointer"
+                    className="w-full appearance-none bg-transparent border border-zinc-200 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl px-4 py-2.5 text-[14px] font-medium font-display text-primary dark:text-white outline-none transition-all pr-8 cursor-pointer"
                   >
                     {questionCategories.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -458,7 +464,7 @@ export default function CreateAssignment() {
                     setLanguage(val);
                   }
                 }}
-                className="w-full appearance-none bg-white dark:bg-[#1A1A1A] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white rounded-xl px-4 py-3 text-[14px] font-medium font-display text-primary dark:text-white outline-none pr-10 cursor-pointer transition-all"
+                className="w-full appearance-none bg-transparent border border-zinc-200 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl px-4 py-3 text-[14px] font-medium font-display text-primary dark:text-white outline-none pr-10 cursor-pointer transition-all"
               >
                 <option value="English">English</option>
                 <option value="Bengali">Bengali (বাংলা)</option>
@@ -476,7 +482,7 @@ export default function CreateAssignment() {
                   placeholder="Type custom language (e.g. Spanish, French, Tamil...)"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="w-full bg-white dark:bg-[#1A1A1A] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white rounded-xl px-4 py-3 text-[14px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none transition-all"
+                  className="w-full bg-transparent border border-zinc-200 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl px-4 py-3 text-[14px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none transition-all"
                   required
                 />
               </div>
@@ -494,7 +500,7 @@ export default function CreateAssignment() {
               placeholder="e.g. Generate a question paper for 3 hour exam duration…"
               value={additionalInfo}
               onChange={(e) => setAdditionalInfo(e.target.value)}
-              className="w-full bg-white dark:bg-[#1A1A1A] border border-[#E0E0E0] dark:border-[#2D2D2D] focus:border-primary dark:focus:border-white focus:ring-0 rounded-xl p-4 pb-12 text-[14px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none min-h-[120px] resize-none transition-all"
+              className="w-full bg-transparent border border-zinc-200 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 dark:border-zinc-800 dark:focus:border-zinc-400 dark:focus:ring-zinc-400 rounded-xl p-4 pb-12 text-[14px] font-medium font-display text-primary dark:text-white placeholder-[#A9A9A9] outline-none min-h-[120px] resize-none transition-all"
             />
             {/* Mic button */}
             <button
