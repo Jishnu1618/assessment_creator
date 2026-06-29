@@ -182,7 +182,7 @@ export default function CreateAssignment() {
             </div>
 
             <div className="flex items-center justify-between w-full text-[12px] font-bold text-[#A9A9A9] font-display">
-              <span className="uppercase tracking-wider">VedaAI System</span>
+              <span className="uppercase tracking-wider">EduAi System</span>
               <span className="text-primary font-extrabold text-[14px]">{generationProgress}%</span>
             </div>
           </div>

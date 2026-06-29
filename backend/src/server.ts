@@ -87,7 +87,7 @@ const startServer = async () => {
   // 3. Start HTTP + WS Listening Server
   server.listen(PORT, () => {
     console.log(`========================================`);
-    console.log(`  VedaAI Backend Server running on port ${PORT}`);
+    console.log(`  EduAi Backend Server running on port ${PORT}`);
     console.log(`  WebSockets available at ws://localhost:${PORT}`);
     console.log(`========================================`);
   });

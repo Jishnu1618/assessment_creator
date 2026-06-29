@@ -43,7 +43,7 @@ function AppearanceTab() {
     <div className="space-y-6">
       <div>
         <h3 className="text-[16px] font-bold font-display text-primary dark:text-white mb-1">Theme</h3>
-        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-4">Choose how VedaAI looks for you.</p>
+        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-4">Choose how EduAi looks for you.</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {themes.map((t) => {
             const Icon = t.icon;
@@ -214,7 +214,7 @@ function NotificationsTab() {
     <div className="space-y-3 max-w-lg">
       <div>
         <h3 className="text-[16px] font-bold font-display text-primary dark:text-white mb-1">Notification Preferences</h3>
-        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-4">Control what notifications you receive from VedaAI.</p>
+        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-4">Control what notifications you receive from EduAi.</p>
       </div>
       {items.map((item) => (
         <div key={item.key} className="flex items-center justify-between p-4 bg-white dark:bg-[#1E1E1E] rounded-xl border border-[#EBEBEB] dark:border-[#2D2D2D]">
@@ -260,7 +260,7 @@ function RolesTab() {
     <div className="space-y-5 max-w-lg">
       <div>
         <h3 className="text-[16px] font-bold font-display text-primary dark:text-white mb-1">Your Role</h3>
-        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-3">Roles determine what you can do within VedaAI.</p>
+        <p className="text-[13px] text-muted dark:text-[#A0A0A0] font-display mb-3">Roles determine what you can do within EduAi.</p>
         <div className="p-4 bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-900/30 rounded-xl flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center shrink-0">
             <Shield className="w-5 h-5 text-orange-500 dark:text-orange-400" />

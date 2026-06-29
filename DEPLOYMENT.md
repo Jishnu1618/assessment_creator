@@ -1,6 +1,6 @@
-# 🚀 VedaAI Cloud Deployment & Production Orchestration Guide
+# 🚀 EduAi Cloud Deployment & Production Orchestration Guide
 
-This document provides a comprehensive, production-grade guide to deploying **VedaAI** to public cloud hosting environments. 
+This document provides a comprehensive, production-grade guide to deploying **EduAi** to public cloud hosting environments. 
 
 In this monorepo setup:
 * **Frontend**: Hosted on **Vercel** (Serverless Next.js Static Optimization & App Router)
@@ -38,16 +38,16 @@ Before deploying either service, you need to spin up the cloud data layers and o
 4. Under **Network Access**, click **Add IP Address** and select **Allow Access from Anywhere** (`0.0.0.0/0`). 
    > [!IMPORTANT]
    > You **must** set the MongoDB whitelist to `0.0.0.0/0` because Render's free tier assigns dynamic IP addresses to web services that rotate on every deployment.
-5. Copy your connection string: `mongodb+srv://<username>:<password>@cluster.mongodb.net/vedaai?retryWrites=true&w=majority`.
+5. Copy your connection string: `mongodb+srv://<username>:<password>@cluster.mongodb.net/eduai?retryWrites=true&w=majority`.
 
 ### 2. Upstash Redis (Task Queue Layer)
 1. Login to the [Upstash Console](https://console.upstash.com/).
-2. Click **Create Database**. Name it `vedaai-queue` and select a region closest to your Render server (e.g., N. Virginia or Frankfurt).
+2. Click **Create Database**. Name it `eduai-queue` and select a region closest to your Render server (e.g., N. Virginia or Frankfurt).
 3. Scroll down to the **Details** section and look for the **TCP Endpoint** under connection info.
 4. Copy the secure TLS endpoint URL (which starts with `rediss://`):
    `rediss://default:<password>@<host>.upstash.io:6379`
    > [!TIP]
-   > VedaAI uses standard TLS handshake to encrypt commands sent to Upstash Redis. Make sure to use the **`rediss://`** prefix (with double `s`) to enforce secure SSL, otherwise connection attempts will be aborted by Upstash's security rules.
+   > EduAi uses standard TLS handshake to encrypt commands sent to Upstash Redis. Make sure to use the **`rediss://`** prefix (with double `s`) to enforce secure SSL, otherwise connection attempts will be aborted by Upstash's security rules.
 
 ### 3. Google Gemini (AI Layer)
 1. Visit [Google AI Studio](https://aistudio.google.com/).
@@ -65,7 +65,7 @@ Render runs our persistent Express backend and accepts the real-time WebSocket p
 2. Click **New +** and select **Web Service**.
 3. Connect your GitHub account and select your `assessment_creater` repository.
 4. Configure the Web Service settings:
-   * **Name**: `vedaai-backend` (or a custom name)
+   * **Name**: `eduai-backend` (or a custom name)
    * **Region**: Select the region closest to your Redis/MongoDB setup (e.g., `Singapore` or `Oregon`).
    * **Branch**: `main`
    * **Root Directory**: `backend` (Crucial: pointing to the monorepo subfolder!)
@@ -86,7 +86,7 @@ Render runs our persistent Express backend and accepts the real-time WebSocket p
 | `REDIS_PASSWORD` | Optional | `gQAAAAAAAhn...` (Upstash password string) |
 
 > [!NOTE]
-> VedaAI features a **High-Availability Queue Bypass**. If your Redis environment variables are omitted or invalid, the backend will automatically bypass BullMQ and run task processing asynchronously inline. This keeps 100% of generation features available even if Redis is offline!
+> EduAi features a **High-Availability Queue Bypass**. If your Redis environment variables are omitted or invalid, the backend will automatically bypass BullMQ and run task processing asynchronously inline. This keeps 100% of generation features available even if Redis is offline!
 
 7. Click **Create Web Service**. Render will now pull the code, install production dependencies, compile TypeScript into standard JS in `dist/`, and boot up the server.
 
@@ -123,7 +123,7 @@ Our deployment workflow addresses real-world, industry-standard edge cases to ke
 
 ### 2. Upstash SSL Connection Socket Abort
 * **The Issue**: Upstash Redis only accepts secure SSL/TLS connections (`rediss://`). When a standard TCP connection is initiated, the server terminates it instantly.
-* **The Fix**: VedaAI's Redis client configuration dynamically evaluates the remote environment. If a remote host is detected, it automatically injects a secure `{}` TLS flag into the connection setup:
+* **The Fix**: EduAi's Redis client configuration dynamically evaluates the remote environment. If a remote host is detected, it automatically injects a secure `{}` TLS flag into the connection setup:
   ```typescript
   tls: process.env.REDIS_HOST && process.env.REDIS_HOST !== '127.0.0.1' ? {} : undefined
   ```

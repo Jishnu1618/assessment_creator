@@ -63,7 +63,7 @@ function ToolModal({ tool, onClose }: { tool: Tool; onClose: () => void }) {
     setLoading(true);
     // Simulate AI generation
     await new Promise(r => setTimeout(r, 2000));
-    setResult(`[AI Generated ${tool.name} Output]\n\nBased on your input: "${prompt}"\n\nThis is a mock AI response for the ${tool.name} tool. In production, this would connect to the VedaAI backend and return a real AI-generated response tailored to your curriculum and class level.\n\nExample output would include detailed, structured content relevant to ${tool.name.toLowerCase()} for your specific class and subject.`);
+    setResult(`[AI Generated ${tool.name} Output]\n\nBased on your input: "${prompt}"\n\nThis is a mock AI response for the ${tool.name} tool. In production, this would connect to the EduAi backend and return a real AI-generated response tailored to your curriculum and class level.\n\nExample output would include detailed, structured content relevant to ${tool.name.toLowerCase()} for your specific class and subject.`);
     setLoading(false);
   };
 

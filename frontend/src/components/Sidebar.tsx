@@ -153,14 +153,14 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
 
         <div 
           onClick={() => handleTabClick('Home')}
-          className="flex items-center gap-[8px] mb-7 w-[136px] h-[40px] cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 mb-7 cursor-pointer hover:opacity-90 transition-opacity select-none"
         >
-          <img 
-            src="/logo-frame.svg" 
-            alt="VedaAI Logo" 
-            className="w-full h-full object-contain" 
-            style={{ filter: theme === 'dark' ? 'invert(1) brightness(1.5)' : 'none' }}
-          />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-orange-500/20 text-white shrink-0">
+            <Sparkles className="w-5 h-5" />
+          </div>
+          <span className="text-[20px] font-extrabold font-display tracking-tight text-primary dark:text-white leading-none">
+            Edu<span className="text-orange-500">Ai</span>
+          </span>
         </div>
 
         {/* ── Create Assignment Button ──────────────────────────── */}

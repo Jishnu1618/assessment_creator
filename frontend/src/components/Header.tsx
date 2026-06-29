@@ -59,7 +59,7 @@ function LoginModal({ onClose }: { onClose: () => void }) {
             </div>
             <div>
               <h2 className="text-[16px] font-bold font-display text-primary">Sign In</h2>
-              <p className="text-[12px] text-muted font-display">Welcome to VedaAI</p>
+              <p className="text-[12px] text-muted font-display">Welcome to EduAi</p>
             </div>
           </div>
           <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-[#F0F0F0] transition-colors cursor-pointer">

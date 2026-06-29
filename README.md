@@ -1,8 +1,8 @@
-# 🎓 VedaAI - Premium Full-Stack AI Assignment & Question Paper Builder
+# 🎓 EduAi - Premium Full-Stack AI Assignment & Question Paper Builder
 
-VedaAI is a state-of-the-art educational platform designed to empower teachers by instantly generating high-fidelity, highly customized, and multilingual question papers matching strict grading rubrics.
+EduAi is a state-of-the-art educational platform designed to empower teachers by instantly generating high-fidelity, highly customized, and multilingual question papers matching strict grading rubrics.
 
-Featuring a beautiful, modern glassmorphic interface, VedaAI leverages cutting-edge LLMs (Gemini 2.5 Flash), persistent data storage (MongoDB), real-time generation feedback (WebSockets), and an intelligent high-availability queuing bypass.
+Featuring a beautiful, modern glassmorphic interface, EduAi leverages cutting-edge LLMs (Gemini 2.5 Flash), persistent data storage (MongoDB), real-time generation feedback (WebSockets), and an intelligent high-availability queuing bypass.
 
 ---
 
@@ -91,7 +91,7 @@ The server keeps the client informed of the heavy generation steps via secure, r
 ## 📂 Project Directory Structure
 
 ```bash
-vedaai/
+eduai/
 ├── frontend/               # Next.js 15 Client Web Application
 │   ├── src/
 │   │   ├── app/            # App Router (pages: /, /create, /output, /settings)
@@ -121,8 +121,8 @@ Ensure you have the following installed:
 
 ### 🚀 1. Clone & Configure Workspace
 ```bash
-git clone https://github.com/YOUR_USERNAME/vedaai.git
-cd vedaai
+git clone https://github.com/YOUR_USERNAME/assessment_creater.git
+cd assessment_creater
 ```
 
 ### 📦 2. Configure Backend Server
@@ -157,7 +157,7 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser!
 
 ## 🌐 Production Cloud Deployment
 
-VedaAI is fully optimized for containerless cloud deployment using state-of-the-art serverless and cloud hosting engines:
+EduAi is fully optimized for containerless cloud deployment using state-of-the-art serverless and cloud hosting engines:
 * **Frontend Hosting**: Serverless static deployment on **Vercel** with full Next.js dynamic routing capabilities.
 * **Backend API Engine**: Continuous Express.js REST & WebSockets execution on **Render** (Web Services tier).
 * **High-Availability Task Queue**: Serverless, secure TLS BullMQ caching on **Upstash Redis**.
