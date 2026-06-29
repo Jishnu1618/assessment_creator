@@ -139,7 +139,7 @@ export default function Sidebar({ isMobile = false, onClose = () => {} }: { isMo
     <>
       {showSchoolModal && <SchoolModal onClose={() => setShowSchoolModal(false)} />}
 
-      <div className="flex flex-col h-full bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl border-r border-white/20 dark:border-zinc-800/30 px-5 py-7 select-none relative w-full transition-colors duration-200">
+      <div className="flex flex-col h-full bg-transparent px-5 py-7 select-none relative w-full transition-colors duration-200">
         {/* Mobile close button */}
         {isMobile && (
           <button 

@@ -294,7 +294,7 @@ export default function Header({ onMenuOpen = () => {} }: { onMenuOpen?: () => v
     <>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
 
-      <header className="bg-white/10 dark:bg-zinc-950/20 backdrop-blur-xl h-full px-6 flex items-center justify-between select-none relative z-40 w-full transition-colors duration-200 border-b border-white/20 dark:border-zinc-800/30">
+      <header className="bg-transparent h-full px-6 flex items-center justify-between select-none relative z-40 w-full">
         {/* Left side breadcrumbs */}
         <div className="flex items-center gap-3">
           {/* Mobile menu trigger */}
