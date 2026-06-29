@@ -60,7 +60,7 @@ export default function FilledState() {
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+        <div className="relative flex flex-col p-6 rounded-2xl backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
           <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Total Creator Runs</div>
           <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">{assignments.length}</div>
           <div className="text-[12px] text-slate-550 dark:text-zinc-500 mt-1 flex items-center gap-1.5">
@@ -69,7 +69,7 @@ export default function FilledState() {
           </div>
         </div>
         
-        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+        <div className="relative flex flex-col p-6 rounded-2xl backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
           <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Active Agent Cycles</div>
           <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">
             {assignments.filter(a => a.status === 'generating').length}
@@ -80,7 +80,7 @@ export default function FilledState() {
           </div>
         </div>
 
-        <div className="backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 rounded-2xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
+        <div className="relative flex flex-col p-6 rounded-2xl backdrop-blur-xl bg-white/60 dark:bg-zinc-900/30 border border-white/80 dark:border-zinc-700/50 shadow-xl shadow-slate-200/50 dark:shadow-black/40 transition-all duration-300 hover:-translate-y-1 hover:bg-white/80 dark:hover:bg-zinc-800/40 hover:shadow-2xl hover:shadow-slate-200/70">
           <div className="text-[11px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-widest font-display">Completed Papers</div>
           <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-1 font-display tracking-tight">
             {assignments.filter(a => a.status === 'completed').length}
@@ -214,17 +214,7 @@ export default function FilledState() {
         )}
       </div>
 
-      {/* Floating "Create Assignment" dark CTA button — centered at bottom */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 select-none print:hidden" style={{ marginLeft: '152px' }}>
-        <button
-          onClick={handleCreateClick}
-          className="bg-primary hover:bg-black text-white font-medium font-display py-3 px-7 rounded-full flex items-center justify-center gap-2 shadow-lg transition-all duration-200 active:scale-[0.97] hover:scale-[1.02] cursor-pointer whitespace-nowrap h-[46px]"
-          style={{ minWidth: '208px' }}
-        >
-          <Plus className="w-4.5 h-4.5 text-white stroke-[2.5]" />
-          <span className="text-[15px]">Create Assignment</span>
-        </button>
-      </div>
+
 
     </div>
   );
