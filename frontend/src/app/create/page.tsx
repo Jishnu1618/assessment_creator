@@ -167,12 +167,26 @@ export default function CreateAssignment() {
               <Loader2 className="w-10 h-10 animate-spin text-zinc-400 absolute opacity-30" />
             </div>
 
-            <h3 className="text-[20px] font-bold font-display text-primary tracking-tight leading-none mb-2">
+            <h3 className="text-[20px] font-bold font-display text-primary tracking-tight leading-none mb-4">
               Generating Assignment
             </h3>
-            <p className="text-[14px] text-muted font-display font-medium max-w-[320px] mb-8 h-10 flex items-center justify-center">
-              {generationStatusText || getLoaderMessage(generationProgress)}
-            </p>
+            
+            {/* Live Agentic Terminal Feed */}
+            <div className="w-full bg-[#18181B] dark:bg-black rounded-xl border border-[#27272A] p-4 text-left font-mono text-[13px] text-[#A1A1AA] mb-6 shadow-inner relative overflow-hidden">
+              <div className="flex items-center gap-1.5 mb-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444] opacity-80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B] opacity-80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] opacity-80" />
+                <span className="text-[11px] text-[#71717A] ml-2 select-none">eduai-agentic-pipeline.log</span>
+              </div>
+              <div className="space-y-1.5 min-h-[44px]">
+                <div className="text-[#3F3F46] select-none">$ eduai-pipeline --generate --model=gemini-2.5</div>
+                <div key={generationStatusText} className="text-[#F4F4F5] animate-fade-in flex items-start gap-1">
+                  <span className="text-zinc-500 mr-1 select-none">&gt;</span>
+                  <span>{generationStatusText || getLoaderMessage(generationProgress)}</span>
+                </div>
+              </div>
+            </div>
 
             {/* Progress Bar */}
             <div className="w-full bg-[#F0F0F0] h-2 rounded-full overflow-hidden mb-3 relative">
