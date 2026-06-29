@@ -43,6 +43,7 @@ export default function CreateAssignment() {
     triggerAIGeneration,
     generationStatus,
     generationProgress,
+    generationStatusText,
   } = useStore();
 
   const getTodayDateString = () => {
@@ -170,7 +171,7 @@ export default function CreateAssignment() {
               Generating Assignment
             </h3>
             <p className="text-[14px] text-muted font-display font-medium max-w-[320px] mb-8 h-10 flex items-center justify-center">
-              {getLoaderMessage(generationProgress)}
+              {generationStatusText || getLoaderMessage(generationProgress)}
             </p>
 
             {/* Progress Bar */}

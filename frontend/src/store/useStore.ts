@@ -68,7 +68,7 @@ export interface LibraryItem {
   createdAt?: string;
 }
 
-interface VedaStore {
+interface EduStore {
   // Navigation State
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -120,6 +120,7 @@ interface VedaStore {
   generatingAssignmentId: string | null;
   generationProgress: number;
   generationStatus: 'pending' | 'generating' | 'completed' | 'failed' | null;
+  generationStatusText: string;
   triggerAIGeneration: (routerPush: (path: string) => void) => Promise<void>;
 
   // Selected Assignment Viewer State
@@ -485,7 +486,7 @@ const getMockQuestionsForSubject = (subject: string, className: string, question
 
 let wsConnection: WebSocket | null = null;
 
-export const useStore = create<VedaStore>((set, get) => ({
+export const useStore = create<EduStore>((set, get) => ({
   // Navigation State
   activeTab: 'Assignments',
   setActiveTab: (tab) => set({ activeTab: tab }),
@@ -678,12 +679,14 @@ export const useStore = create<VedaStore>((set, get) => ({
     generatingAssignmentId: null,
     generationProgress: 0,
     generationStatus: null,
+    generationStatusText: '',
   }),
 
   // AI Generation State and WebSocket streaming
   generatingAssignmentId: null,
   generationProgress: 0,
   generationStatus: null,
+  generationStatusText: '',
 
   triggerAIGeneration: async (routerPush) => {
     const state = get();
@@ -722,6 +725,7 @@ export const useStore = create<VedaStore>((set, get) => ({
     set({ 
       generationStatus: 'pending', 
       generationProgress: 10,
+      generationStatusText: 'Initiating assignment creation request...',
     });
 
     try {
@@ -758,6 +762,7 @@ export const useStore = create<VedaStore>((set, get) => ({
         generatingAssignmentId: assignmentId,
         generationStatus: 'generating',
         generationProgress: 20,
+        generationStatusText: 'Connecting to real-time agent workflow...',
       });
 
       // Close any existing WS
@@ -779,14 +784,16 @@ export const useStore = create<VedaStore>((set, get) => ({
           set({
             generationProgress: data.progress,
             generationStatus: data.status,
+            generationStatusText: data.message || 'Generating assignment content...',
           });
-
+          
           // Legacy: handle completed status within progress event
           if (data.status === 'completed' && data.data) {
             set({
               generatedPaper: data.data.generatedPaper,
               generationProgress: 100,
               generationStatus: 'completed',
+              generationStatusText: 'Generation completed successfully!',
             });
             const newlySaved = { ...data.data, id: data.data._id };
             set((prev) => ({
@@ -795,18 +802,23 @@ export const useStore = create<VedaStore>((set, get) => ({
             wsConnection?.close();
             routerPush('/output');
           } else if (data.status === 'failed') {
-            set({ generationStatus: 'failed', generationProgress: 100 });
+            set({ 
+              generationStatus: 'failed', 
+              generationProgress: 100,
+              generationStatusText: 'Generation failed due to error.',
+            });
             wsConnection?.close();
             alert("AI Generation failed: The server encountered an error while generating the questions. Please verify your Gemini API key and try again.");
           }
         }
-
+        
         // Handle final "job:completed" event — emitted by backend after Redis caching
         if (data.event === 'job:completed' && data.data) {
           set({
             generatedPaper: data.data.generatedPaper,
             generationProgress: 100,
             generationStatus: 'completed',
+            generationStatusText: 'Generation completed successfully!',
           });
           const newlySaved = { ...data.data, id: data.data._id };
           set((prev) => ({
