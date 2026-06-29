@@ -68,8 +68,9 @@ export const generateAssignmentPaper = async (params: {
   additionalInfo?: string;
   language?: string;
   referenceFileContent?: string;
+  onProgress?: (status: string, percentage: number) => void;
 }): Promise<IGeneratedPaper> => {
-  const { title, className, subject, questionTypes, additionalInfo, language, referenceFileContent } = params;
+  const { title, className, subject, questionTypes, additionalInfo, language, referenceFileContent, onProgress } = params;
 
   const targetLanguage = language || 'English';
 
@@ -117,58 +118,56 @@ export const generateAssignmentPaper = async (params: {
 4. Set sequential numeric ids (1, 2, 3, ...) for both questions and answers. The ids in questions and answers lists MUST match perfectly (e.g., question id 1 corresponds to answer id 1).
 5. Do NOT include raw markdown formatting inside the JSON values, but keep standard formulas or linebreaks if needed.`;
 
-  const modelsToTry = ['gemini-2.5-flash', 'gemini-2.0-flash'];
-  let response;
-  let lastError;
-
-  for (const modelName of modelsToTry) {
-    let retries = 3;
-    while (retries > 0) {
-      try {
-        console.log(`Attempting content generation using model ${modelName} (Retries left: ${retries - 1})...`);
-        response = await ai.models.generateContent({
-          model: modelName,
-          contents: prompt,
-          config: {
-            responseMimeType: 'application/json',
-            responseSchema: responseSchema,
-            temperature: 0.2, // slightly lower temperature for precise compliance
-          },
-        });
-
-        if (response && response.text) {
-          console.log(`Successfully generated content using model ${modelName}!`);
-          break; // Stop retry loop on successful generation
-        }
-      } catch (err: any) {
-        console.warn(`Model ${modelName} failed or returned error (retries left: ${retries - 1}):`, err);
-        lastError = err;
-        
-        const isTransient = err?.status === 'UNAVAILABLE' || err?.message?.includes('503') || err?.message?.includes('demand');
-        if (isTransient && retries > 1) {
-          console.log('Transient error detected. Waiting 1.5 seconds before retrying...');
-          await new Promise((resolve) => setTimeout(resolve, 1500));
-        } else {
-          // If it's a hard error or out of retries, break to try the next model
-          break;
-        }
-      }
-      retries--;
-    }
-    if (response && response.text) {
-      break; // Stop iterating outer model list on success
-    }
-  }
-
-  if (!response || !response.text) {
-    throw lastError || new Error('All available Gemini models failed to generate content.');
-  }
-
   try {
-    const result = JSON.parse(response.text) as IGeneratedPaper;
-    return result;
+    // 1. Drafting Agent
+    onProgress?.('[Drafting Agent] Generating initial questions...', 30);
+    console.log(`[Drafting Agent] Generating initial paper layout...`);
+    const draftResponseText = await callGeminiModel(prompt, responseSchema, 0.2);
+    const draftPaper = JSON.parse(draftResponseText) as IGeneratedPaper;
+
+    // 2. Critic Agent
+    onProgress?.('[Critic Agent] Evaluating against rubric and Bloom\'s Taxonomy...', 60);
+    console.log(`[Critic Agent] Auditing generated content...`);
+    const criticResult = await criticReviewPaper(draftPaper, {
+      title,
+      className,
+      subject,
+      questionTypes,
+      additionalInfo,
+      language,
+      referenceFileContent
+    });
+    console.log(`[Critic Agent] Evaluation completed. Score: ${criticResult.score}/100, Approved: ${criticResult.approved}`);
+
+    let finalPaper = draftPaper;
+
+    // 3. Revision Agent (Conditional)
+    if (!criticResult.approved) {
+      console.log(`[Critic Agent] Paper not approved. Requesting revision based on feedback: ${criticResult.feedback}`);
+      onProgress?.('[Revision Agent] Refining questions based on Critic feedback...', 85);
+      const revisedPaper = await revisePaper(draftPaper, criticResult.feedback, {
+        title,
+        className,
+        subject,
+        questionTypes,
+        additionalInfo,
+        language,
+        referenceFileContent
+      });
+      finalPaper = revisedPaper as IGeneratedPaper;
+      onProgress?.('[KeyGen Agent] Finalizing grading keys...', 95);
+      await new Promise((resolve) => setTimeout(resolve, 800));
+    } else {
+      console.log(`[Critic Agent] Paper approved. Finalizing directly.`);
+      onProgress?.('[KeyGen Agent] Finalizing grading keys...', 95);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+
+    onProgress?.('Completed', 100);
+    return finalPaper;
+
   } catch (error) {
-    console.error('Error parsing Gemini JSON response:', error);
+    console.error('Error during multi-agent paper generation loop:', error);
     throw error;
   }
 };
